@@ -2,6 +2,7 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as githubAppToken from "@suzuki-shunsuke/github-app-token";
 import { validate } from "./validate";
+import { newAppOctokit } from "./app_octokit";
 
 const parseLabelDescription = (
   description: string,
@@ -41,8 +42,7 @@ export const action = async () => {
     })}`,
   );
   const token = await githubAppToken.create({
-    appId: core.getInput("app_id", { required: true }),
-    privateKey: core.getInput("app_private_key", { required: true }),
+    octokit: newAppOctokit(),
     owner: owner,
     repositories: [repo],
     permissions: permissions,

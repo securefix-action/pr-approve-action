@@ -2,10 +2,9 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as label from "@csm-actions/label";
 import { validate } from "./validate";
+import { newAppOctokit } from "./app_octokit";
 
 export const action = async () => {
-  const appID = core.getInput("app_id", { required: true });
-  const appPrivateKey = core.getInput("app_private_key", { required: true });
   const serverRepositoryName = core.getInput("server_repository_name", {
     required: true,
   });
@@ -57,8 +56,7 @@ export const action = async () => {
   );
 
   await label.create({
-    appId: appID,
-    privateKey: appPrivateKey,
+    appOctokit: newAppOctokit(),
     owner: serverRepositoryOwner,
     repo: serverRepositoryName,
     name: labelName,
