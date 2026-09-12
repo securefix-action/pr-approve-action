@@ -87,7 +87,7 @@ permissions:
   contents: read
 
 steps:
-  - uses: csm-actions/approve-pr-action@452271472f121d6d2f8e7a0761488d2fcc29b715 # v0.2.0
+  - uses: csm-actions/approve-pr-action@a8fdc60ab4d9b446694140534bbcc71c29fb499c # v1.0.0
     with:
       client_id: ${{vars.APP_CLIENT_ID}}
       aws_kms_key_id: ${{vars.KMS_KEY_ID}}
